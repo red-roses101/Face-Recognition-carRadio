@@ -49,13 +49,15 @@ def main_app(name):
                     img = cv2.imread(f".\\data\\{name}\\{pred}{name}.jpg", cv2.IMREAD_UNCHANGED)
                     resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
                     cv2.imwrite(f".\\data\\{name}\\50{name}.jpg", resized)
-                    Image1 = Image.open(f".\\2.png") 
-                      
+                    Image1 = Image.open(f".\\2.png")
+
+
                     # make a copy the image so that the  
                     # original image does not get affected 
                     Image1copy = Image1.copy() 
-                    Image2 = Image.open(f".\\data\\{name}\\50{name}.jpg") 
-                    Image2copy = Image2.copy() 
+                    Image2 = Image.open(f".\\data\\{name}\\50{name}.jpg")
+                    Image2copy = Image2.copy()
+
                       
                     # paste image giving dimensions 
                     Image1copy.paste(Image2copy, (195, 114)) 
@@ -65,10 +67,16 @@ def main_app(name):
                     frame = cv2.imread("end.png", 1)
 
                     cv2.imshow("Result",frame)
+                    cv2.waitKey(7000)
+
+                    # add another image to display
+                    Image3= cv2.imread("Marquardt.png")
+                    cv2.imshow("Activation",Image3)
                     cv2.waitKey(5000)
+
                 break
 
 
         cap.release()
         cv2.destroyAllWindows()
-        
+
