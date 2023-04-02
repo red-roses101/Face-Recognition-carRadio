@@ -1,11 +1,9 @@
 # Face Recogniton GUI-APP
 
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://www.youtube.com/channel/UCKvgGs-ALhvOq9u95PHXHNw)
 
-# Live Demo
-```html
-https://www.youtube.com/embed/3EBdT-0gvu8
+
+
 
 ```
 
@@ -52,7 +50,7 @@ Capture Data From the face then train the classifier<br>
 
 ### Users List<br>
 List of all the users<br>
-![page3](https://i.ibb.co/1KwfVVV/dropdown.png)<br>
+![page3](https://user-images.githubusercontent.com/120339640/229362776-90ca43ea-5823-4d97-8167-64aa71961ac4.png)<br>
 
 ### Recognition <br>
 A webcam window will popup and start recognition proccess<br>
