@@ -57,15 +57,15 @@ List of all the users<br>
 ### Recognition <br>
 A webcam window will popup and start recognition proccess<br>
 ![page4](https://i.ibb.co/sCtgDDC/4page.png)<br>
->![Face Recognition](https://i.ibb.co/bNpC5wR/jack.png)<br>
->![emotion](https://i.ibb.co/F7pdtjZ/emotion.png)<br>
->![Age and Gender](https://i.ibb.co/9q1L7sD/age.png)<br>
+>![salem](https://user-images.githubusercontent.com/120339640/229361438-df6c67b1-40b5-493a-a465-beb7512a789e.PNG)<br>
+>![valid user welcom page](https://user-images.githubusercontent.com/120339640/229361475-37f957d6-3b14-49c8-9bb3-955710908474.PNG)<br>
+>!![radio activated](https://user-images.githubusercontent.com/120339640/229361490-bf9154b9-0e71-41ac-a3d2-783072ff37d6.PNG)<br>
 
 
 
 <br><br>
 
-Made By ❤ : [JoeVenner](mailto:ylafrimi@gmail.com)<br>
+Made By ❤ : [salem farhani](salem@gmail.com)<br>
 **Free Software, Hell Yeah!**
 
 
