@@ -41,7 +41,7 @@ $ python app-gui.py
 
 ### Add a User <br>
 Add the user you want to train a classifier for <br>
-![page1](https://i.ibb.co/t8gdq6s/adduser.png)<br>
+![page1](https://user-images.githubusercontent.com/120339640/229362923-625e26e0-3975-43db-aa7b-dbda24e5b68a.png)<br>
 
 
 ### Capture Data and Train Classifier<br>
