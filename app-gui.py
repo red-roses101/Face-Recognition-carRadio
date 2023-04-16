@@ -1,11 +1,14 @@
+import os.path
+import shutil
+
 from Detector import main_app
 from create_classifier import train_classifer
 from create_dataset import start_capture
 import tkinter as tk
 from tkinter import font as tkfont
 from tkinter import messagebox,PhotoImage
-#from PIL import ImageTk, Image
-#from gender_prediction import emotion,ageAndgender
+from PIL import ImageTk, Image
+#from emotion_gender_prediction import emotion,ageAndgender
 names = set()
 
 
@@ -22,7 +25,7 @@ class MainUI(tk.Tk):
         self.title_font = tkfont.Font(family='Helvetica', size=16, weight="bold")
         self.title("Face Recognizer")
         self.resizable(False, False)
-        self.geometry("500x250")
+        self.geometry("500x350")
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.active_name = None
         container = tk.Frame(self)
@@ -65,11 +68,13 @@ class StartPage(tk.Frame):
             label = tk.Label(self, text="        Home Page        ", font=self.controller.title_font,fg="#263942")
             label.grid(row=0, sticky="ew")
             button1 = tk.Button(self, text="   Add a User  ", fg="#ffffff", bg="#263942",command=lambda: self.controller.show_frame("PageOne"))
-            button2 = tk.Button(self, text="   Check a User  ", fg="#ffffff", bg="#263942",command=lambda: self.controller.show_frame("PageTwo"))
-            button3 = tk.Button(self, text="Quit", fg="#263942", bg="#ffffff", command=self.on_closing)
+            button2 = tk.Button(self, text="   Delete User ", fg="#ffffff", bg="#263942",command=lambda: self.controller.show_frame("PageOne"))
+            button3 = tk.Button(self, text="   Check a User  ", fg="#ffffff", bg="#263942",command=lambda: self.controller.show_frame("PageTwo"))
+            button4 = tk.Button(self, text="Quit", fg="#263942", bg="#ffffff", command=self.on_closing)
             button1.grid(row=1, column=0, ipady=3, ipadx=7)
             button2.grid(row=2, column=0, ipady=3, ipadx=2)
-            button3.grid(row=3, column=0, ipady=3, ipadx=32)
+            button3.grid(row=3, column=0, ipady=3, ipadx=2)
+            button4.grid(row=4, column=0, ipady=3, ipadx=32)
 
 
         def on_closing(self):
@@ -90,8 +95,10 @@ class PageOne(tk.Frame):
         self.user_name.grid(row=0, column=1, pady=10, padx=10)
         self.buttoncanc = tk.Button(self, text="Cancel", bg="#ffffff", fg="#263942", command=lambda: controller.show_frame("StartPage"))
         self.buttonext = tk.Button(self, text="Next", fg="#ffffff", bg="#263942", command=self.start_training)
+        self.buttonde1 = tk.Button(self, text="Delete", fg="#ffffff", bg="#ff0000", command=self.delete_user)
         self.buttoncanc.grid(row=1, column=0, pady=10, ipadx=5, ipady=4)
         self.buttonext.grid(row=1, column=1, pady=10, ipadx=5, ipady=4)
+        self.buttonde1.grid(row=1, column=2, pady=10, ipadx=5, ipady=4)
     def start_training(self):
         global names
         if self.user_name.get() == "None":
@@ -108,6 +115,38 @@ class PageOne(tk.Frame):
         self.controller.active_name = name
         self.controller.frames["PageTwo"].refresh_names()
         self.controller.show_frame("PageThree")
+
+    def delete_user(self):
+        username = self.user_name.get()  # get the current value of the user_name Entry widget
+
+        # delete the user's folder and all its contents
+        user_folder = os.path.join("data", username)
+        if os.path.exists(user_folder):
+            for file_name in os.listdir(user_folder):
+                file_path = os.path.join(user_folder, file_name)
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    os.rmdir(file_path)
+            os.rmdir(user_folder)
+            print(f"User {username} folder deleted successfully!")
+        else:
+            print(f"User {username} folder not found.")
+
+        # delete the training model associated with the user
+        classifier_file = os.path.join("data", "classifiers", f"{username}.xml")
+        if os.path.exists(classifier_file):
+            os.remove(classifier_file)
+            print(f"Classifier for user {username} deleted successfully!")
+        else:
+            print(f"Classifier for user {username} not found.")
+
+
+
+        #once the user is deleted, you can clear the user_name Entry widget
+        self.user_name.delete(0,tk.END)
+
+
 
 
 class PageTwo(tk.Frame):
@@ -189,15 +228,19 @@ class PageFour(tk.Frame):
     def openwebcam(self):
         main_app(self.controller.active_name)
     #def gender_age_pred(self):
-     #  ageAndgender()
+       #ageAndgender()
     #def emot(self):
-     #   emotion()
+        #emotion()
 
 
 
 app = MainUI()
 app.iconphoto(False, tk.PhotoImage(file='icon.ico'))
 app.mainloop()
+root = tk.tk()
+
+app.pack
+
 
 
 
