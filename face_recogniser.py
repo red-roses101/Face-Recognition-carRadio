@@ -1,9 +1,10 @@
 import cv2
-import numpy as np
-import tkinter as tk
+#import numpy as np
+#from time import sleep
+#from PIL import Image
+#import tkinter as tk
 import os
-import subprocess
-import requests
+
 
 def main_app():
     face_cascade = cv2.CascadeClassifier('./data/haarcascade_frontalface_default.xml')
@@ -28,33 +29,19 @@ def main_app():
             roi_gray = gray[y:y + h, x:x + w]
 
             # Use each model to predict the person in the current face
-            recognized_users = []
-            confidence = 100  # Initialize confidence to a high value
+            label = None
+            confidence = float('inf')
             for name, model in models.items():
                 id_, conf = model.predict(roi_gray)
                 if conf < confidence:
-                    recognized_users.append(name)
+                    label = name
                     confidence = conf
 
             # Draw a rectangle around the face and display the predicted label
-            if recognized_users:
+            if label is not None:
                 font = cv2.FONT_HERSHEY_PLAIN
                 frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                frame = cv2.putText(frame, recognized_users[0], (x, y - 4), font, 1, (0, 255, 0), 1, cv2.LINE_AA)
-
-                # If a recognized user exists, launch the desired program
-                # Get the current working directory
-                cwd = os.getcwd()
-
-                # Navigate to the directory that contains the file
-                path_to_file = os.path.join(cwd, 'list_of_accessory.py')
-
-                # Check if the file exists
-                if os.path.exists(path_to_file):
-                    # If the file exists, launch it with subprocess
-                    subprocess.Popen(['python', path_to_file])
-                else:
-                    print(f"The file {path_to_file} does not exist.")
+                frame = cv2.putText(frame, label, (x, y - 4), font, 1, (0, 255, 0), 1, cv2.LINE_AA)
             else:
                 font = cv2.FONT_HERSHEY_PLAIN
                 frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
