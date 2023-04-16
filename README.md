@@ -37,8 +37,7 @@ $ python app-gui.py
 # APP GUI
 
 ### Home Page
-![homepage](https://i.ibb.co/c62qvR2/home-page.png)
-
+![image](https://user-images.githubusercontent.com/120339640/232332742-0a721962-e2c9-43ab-bb58-faf84d1c6e15.png)
 ### Add a User <br>
 Add the user you want to train a classifier for <br>
 ![page1](https://user-images.githubusercontent.com/120339640/229362923-625e26e0-3975-43db-aa7b-dbda24e5b68a.png)<br>
